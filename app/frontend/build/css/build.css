@@ -1,0 +1,165 @@
+.auth-wrap {
+  width: 450px;
+  margin: 0 auto;
+  margin-top: calc(50vh - 260px);
+  background-color: #444;
+  padding: 20px;
+  border-radius: 2px;
+}
+.auth-wrap .auth-img {
+  height: 150px;
+  width: 150px;
+  margin: 0 auto;
+  background: url(../images/logogo.svg) no-repeat;
+  background-size: cover;
+}
+.auth-wrap input {
+  padding-left: 10px;
+}
+.main-wrapper {
+  padding-right: 0;
+  padding-left: 0;
+}
+.main-wrapper .main-menu {
+  min-height: calc(100vh - 50px - 56px);
+  margin-right: 0;
+  flex-wrap: nowrap;
+}
+.main-wrapper .main-menu .left-menu {
+  padding-right: 0;
+}
+.main-wrapper .main-menu .central-part {
+  max-width: 75%;
+}
+.main-wrapper .main-menu .central-part .search-menu {
+  display: flex;
+  align-items: center !important;
+  margin-bottom: 5px;
+}
+.main-wrapper .main-menu .central-part .search-menu .col-search {
+  padding-right: 30px;
+  margin-bottom: 5px;
+}
+.main-wrapper .main-menu .central-part .search-menu .fa-search {
+  cursor: pointer;
+}
+.main-wrapper .main-menu .central-part .search-menu .columns-checkbox {
+  margin-left: 5px;
+}
+.main-wrapper .main-menu .central-part .search-menu .match-radio {
+  margin-left: 5px;
+}
+.main-wrapper .main-menu .central-part .search-menu .btn-group {
+  margin-right: 5px;
+}
+.main-wrapper .main-menu .central-part .search-menu .menu-columns {
+  display: flex;
+  flex-direction: column;
+}
+.main-wrapper .main-menu .central-part .search-menu .menu-columns .apply-columns {
+  margin: 5px;
+}
+.main-wrapper .main-menu .central-part .search-menu .menu-dementions {
+  max-height: 300px;
+  overflow: auto;
+}
+.main-wrapper .main-menu .central-part .search-menu .selecting {
+  height: 30px;
+}
+.main-wrapper .main-menu .central-part .pagination-row .previous-btn {
+  margin-left: 0;
+}
+.main-wrapper .main-menu .central-part .pagination-row .input-page {
+  width: 85px;
+}
+.main-wrapper .main-menu .central-part .pagination-row .go-to-page {
+  padding-left: 40px;
+}
+.main-wrapper .main-menu .central-part .row {
+  margin-top: 15px;
+  padding: 0 10px;
+}
+.main-wrapper .main-menu .central-part .item-column {
+  padding-left: 0;
+  padding-right: 0;
+}
+.main-wrapper .main-menu .central-part .item-column .collection-item-wrap {
+  border-top: solid 1px #3F729B;
+}
+.main-wrapper .main-menu .central-part .item-column .collection-item {
+  padding: 0 5px;
+}
+.main-wrapper .main-menu .central-part .item-btn {
+  margin-bottom: 5px;
+  position: relative;
+  padding: 5px 0;
+  width: 33px;
+}
+.main-wrapper .main-menu .central-part table {
+  table-layout: fixed;
+}
+.main-wrapper .main-menu .central-part table td {
+  word-wrap: break-word;
+}
+.main-wrapper .main-menu .central-part table .first-column {
+  width: 102px;
+}
+.main-wrapper .main-menu .central-part table .id {
+  color: red;
+}
+.main-wrapper .page-footer {
+  padding-top: 0;
+  margin-top: 0;
+}
+.main-wrapper .modal {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  opacity: 1;
+}
+.main-wrapper .modal .modal-content {
+  padding: 5px;
+}
+.main-wrapper .modal .modal-content .collection-name {
+  text-align: center;
+  margin-left: -5px;
+  margin-right: -5px;
+  margin-top: -5px;
+  padding-bottom: 10px;
+  border-radius: 2px 2px 0px 0px;
+}
+.main-wrapper .modal .modal-content .item-wrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.main-wrapper .modal .modal-content .item-wrap input {
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 15px;
+}
+.main-wrapper .modal .modal-content .item-wrap textarea {
+  margin-bottom: 15px;
+}
+.main-wrapper .modal .modal-content .item-wrap p {
+  margin: 0 10px 0 10px;
+}
+.main-wrapper .modal .modal-content .item-wrap .input-img {
+  margin: 0;
+  padding: 6px 0 5px 0;
+}
+.main-wrapper .modal .modal-content .item-wrap .img-url {
+  font-size: 12px;
+}
+.main-wrapper .modal .modal-content .btns-wrap {
+  display: flex;
+  width: auto;
+  margin: 0 auto;
+}
+.main-wrapper .delete-item {
+  position: absolute;
+  text-align: center;
+  width: 400px;
+  left: calc(50vw - 200px);
+  top: calc(50vh - 105px);
+}

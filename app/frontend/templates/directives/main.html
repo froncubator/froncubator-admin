@@ -1,0 +1,181 @@
+
+
+
+ <div class="container-fluid main-wrapper stylish-color-dark" v-on:click="closeAllDropdowns(event)">
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark justify-content-between stylish-color-dark">
+        <form class="form-inline">
+            <a class="navbar-brand" href="#">MongoDB admin panel</a>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" v-model="modelSearch">
+            <button v-on:click='searchModels()' class="btn btn-blue-grey btn-sm my-0" type="button">Search</button>
+        </form>
+        <button class="btn btn-blue-grey btn-sm my-0" type="button">Log Out</button>
+    </nav>
+
+    <div class="row main-menu">
+        <!-- Left menu -->
+        <div class="col-3 stylish-color-dark left-menu">
+            <ul class="list-group stylish-color-dark" v-for="(key, value) in mainServiceRes.collectionsNameCount">
+                <li class="list-group-item d-flex justify-content-between align-items-center stylish-color-dark white-text">
+                    <a v-bind:href="value" class="white-text">{{ value }}</a> 
+                    <span class="badge badge-blue-grey badge-pill">{{ key }}</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Central part -->
+        <div class="col blue-grey lighten-3 central-part" v-if="mainServiceRes.collectionName">
+            <div class="row">
+                <div class="col">
+                    <h4>{{ mainServiceRes.collectionName }}</h4>
+                </div>
+            </div>  
+            <div class="row search-menu">
+                <div class="col-4 col-search">
+                    <input placeholder="Search" type="text" class="input-alternate" v-model="mainServiceRes.searchString">
+                </div>
+                <div class="col-12 col-md-auto search-menu">
+                    <i class="fa fa-search" aria-hidden="true"  v-on:click="search()"></i>
+                </div>
+                <div class="col search-menu">
+                    <div class="btn-group">
+                        <button class="btn btn-blue-grey btn-sm my-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" type="button">{{ mainServiceRes.searchIn }}</button>
+                        <div class="dropdown-menu menu-dementions">
+                            <div class="form-group match-radio"  v-for="(name, index) in mainServiceRes.fieldsName">
+                                <input name="searchGroup" v-bind:value="name" type="radio" v-bind:id="'radioSearch' + index" v-model="mainServiceRes.searchIn"> 
+                                <label v-bind:for="'radioSearch' + index">{{ name }}</label> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <select class="btn btn-blue-grey btn-sm my-0 selecting" v-model="mainServiceRes.match" v-on:click="chooseMatch()">
+                            <option disabled>Choose matching</option>
+                            <option>match</option>
+                            <option>not match</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                        <select class="btn btn-blue-grey btn-sm my-0 selecting" v-model="mainServiceRes.coincidence" v-on:click="chooseCoincidence()">
+                            <option disabled>Choose coincidence</option>
+                            <option>contains</option>
+                            <option>exactly</option>
+                        </select>
+                    </div>
+                    <div class="btn-group">
+                            <button class="btn btn-blue-grey btn-sm my-0 dropdown-toggle" v-on:click="columnsDropdown()" type="button">Columns</button>
+                            <!-- data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" -->
+                        <div class="dropdown-menu menu-dementions menu-columns" v-show="columnsMenu" ref="dropdownMenu">
+                            <button class="btn btn-blue-grey btn-sm my-0 apply-columns" type="button"  v-on:click="chooseColumns()">Apply</button>
+                            <!-- data-toggle="modal" -->
+                            <div class="form-group" v-for="(name, index) in mainServiceRes.fieldsForCreate">
+                                <input class="columns-checkbox" type="checkbox" v-bind:id="'checkboxColumns' + index" v-bind:value="name" v-model="columns">
+                                <label v-bind:for="'checkboxColumns' + index">{{ name }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-blue-grey btn-sm my-0 " type="button" v-on:click="createNew()" >Create</button>
+                </div>
+            </div> 
+            <div class="row pagination-row">
+                <div class="col-4">
+                    <button class="btn btn-blue-grey btn-sm my-0 previous-btn" type="button" v-on:click="prevPage()">&laquo;</button>
+                    {{mainServiceRes.skip + 1}}  / {{mainServiceRes.paginationList + 1}}
+                    <button class="btn btn-blue-grey btn-sm my-0 next-btn" type="button" v-on:click="nextPage()">&raquo;</button>
+                </div>
+                <div class="col">
+                    <form class="form-inline go-to-page">
+                        <button class="btn btn-blue-grey btn-sm my-0" type="button" v-on:click="goToPage()">Go to page</button>
+                        <input placeholder="Page number" type="text" class="input-alternate input-page" v-model="pageNumber">
+                    </form>
+                </div>
+            </div>
+            <table class="table table-striped table-sm">
+                <thead>
+                    <tr>
+                        <th scope="row" class="first-column">#
+                        </th>
+                        <th v-for="fieldName in mainServiceRes.columnsName">
+                                {{ fieldName }}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in mainServiceRes.fields">
+                        <td class="first-column">
+                            <button class="btn btn-blue-grey btn-sm my-0 item-btn" v-bind:attr="item._id" type="button" v-on:click="edit(item._id)">Edit</button>
+                            <!-- data-toggle="modal"  data-target="#addModal"  -->
+                            <button class="btn btn-blue-grey btn-sm my-0 item-btn" v-bind:attr="item._id" type="button" v-on:click="deleteItem(item._id)">Del</button>
+                        </td>
+                        <td v-for="inner in item" >{{ inner }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card delete-item"  v-if="deleteWindow">
+            <div class="card-header blue-grey lighten-1 white-text">
+                Attention
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Are you sure?</h4>
+                <p class="card-text">Do you really want to delete item ID {{mainServiceRes.id}} in collection {{mainServiceRes.collectionName}}</p>
+                <button class="btn btn-blue-grey btn-sm my-0 item-btn" v-on:click="deleteConfirm()">Delete</button>
+                <button class="btn btn-blue-grey btn-sm my-0 item-btn" v-on:click="deleteDiscard()">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+    
+
+    <!-- Modal -->
+    <div id="addModal" v-if="mainServiceRes.modalView" class="modal" role="dialog">
+            
+        <div class="modal-dialog modal-lg ">
+                <div class="modal-content">
+                    <h3 class="collection-name blue-grey lighten-1 white-text">{{ mainServiceRes.collectionName }}</h3>
+                    <div v-for="(item, index) in mainServiceRes.fieldsForCreate">
+                        <div class="item-wrap" v-if="models[item] === 'number'">
+                            <p>{{ item }}</p>
+                            <input class="input-alternate" type="number" v-model="mainServiceRes.newOutput[item]" >
+                        </div>
+                        <div class="item-wrap" v-else-if="models[item] === 'char'">
+                            <p>{{ item }}</p>
+                            <input class="input-alternate" type="text" v-model="mainServiceRes.newOutput[item]" >
+                        </div>
+                        <div class="item-wrap" v-else-if="models[item] === 'richtext'" style="font-weight: bold">
+                            <p>{{ item }}</p>
+                            <input class="input-alternate" type="text" style="font-weight: bold" v-model="mainServiceRes.newOutput[item]" >
+                        </div>
+                        <div class="item-wrap" v-else-if="models[item] === 'text'">
+                            <p>{{ item }}</p>
+                            <textarea class="input-alternate" v-bind:name="'editor' + index"  v-model="mainServiceRes.newOutput[item]" ></textarea>
+                        </div>
+                        <div class="item-wrap" v-else-if="models[item] === 'img'">
+                            <p>{{ item }}</p>
+                            <input class="input-img btn btn-blue-grey btn-sm my-0" accept="image/*" type = "file" v-bind:id = "'myFile' + index"/>
+                            <button class="btn btn-blue-grey btn-sm my-0" type="button" v-on:click="uploadPhoto('myFile' + index, item)">Load image</button>
+                            <p class="img-url">{{mainServiceRes.newOutput[item]}}</p>
+                        </div>
+                    </div>
+                    <div class="btns-wrap">
+                        <button class="btn btn-blue-grey btn-sm my-0" v-on:click="save()">Save</button>
+                        <button class="btn btn-blue-grey btn-sm my-0" v-on:click="cancel()">Cancel</button>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer center-on-small-only stylish-color-dark">
+        <div class="footer-copyright">
+            <div class="container-fluid">
+                © 2018 Copyright: <a href="https://www.froncubator.pro">Froncubator.pro</a>
+            </div>
+        </div>
+    </footer>
+
+ </div>
+
+
+                        <!-- <textarea name="editor1"></textarea> -->

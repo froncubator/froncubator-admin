@@ -1,0 +1,158 @@
+.main-wrapper {
+    padding-right: 0;
+    padding-left: 0;
+    .main-menu {
+        min-height: calc(~"100vh - 50px - 56px");
+        margin-right: 0;
+        flex-wrap: nowrap;
+        .left-menu {
+            padding-right: 0;
+        }
+        .central-part {
+            max-width: 75%;
+            .search-menu {
+                display: flex;
+                align-items: center !important;
+                margin-bottom: 5px;
+                .col-search {
+                    padding-right: 30px;
+                    margin-bottom: 5px;
+                }
+                .fa-search {
+                    cursor: pointer;
+                }
+                .columns-checkbox {
+                    margin-left: 5px;
+                }
+                .match-radio {
+                    margin-left: 5px;
+                }
+                .btn-group {
+                    margin-right: 5px;
+                }
+                .menu-columns {
+                    display: flex;
+                    flex-direction: column;
+                    .apply-columns {
+                        margin: 5px;
+                    }
+
+                }
+                .menu-dementions {
+                    max-height: 300px;
+                    overflow: auto;
+                }
+                // .show {
+                //     display: flex;
+                //     flex-direction: column;
+                // }
+                .selecting {
+                    height: 30px;
+                }
+            }
+            .pagination-row {
+                .previous-btn {
+                    margin-left: 0;
+                }
+                // .next-btn {
+                // }
+                .input-page {
+                    width: 85px;
+                }
+                .go-to-page {
+                    padding-left: 40px;
+                }
+            }
+            .row {
+                margin-top: 15px;
+                padding: 0 10px;
+            }
+            .item-column {
+                padding-left: 0;
+                padding-right: 0;
+                .collection-item-wrap {
+                    border-top: solid 1px #3F729B;
+                }
+                .collection-item{
+                    padding: 0 5px;
+                }
+
+            }
+            .item-btn {
+                margin-bottom: 5px;
+                position: relative;
+                padding: 5px 0;
+                width: 33px;
+            }
+            table {
+                table-layout: fixed;
+                td {
+                    word-wrap:break-word
+                }
+                .first-column {
+                    width: 102px;
+                }
+                .id {
+                    color: red;
+                }
+            }
+        }
+    }
+    .page-footer{
+        padding-top: 0;
+        margin-top: 0;
+    }
+    .modal {
+        display: block;
+        overflow-x: hidden;
+        overflow-y: auto;
+        opacity: 1;
+        .modal-content{
+            padding: 5px;
+            .collection-name {
+                text-align: center;
+                margin-left: -5px;
+                margin-right: -5px;
+                margin-top: -5px;
+                padding-bottom: 10px;
+                border-radius: 2px 2px 0px 0px;
+            }
+            .item-wrap {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                input {
+                    padding-left: 0;
+                    padding-right: 0;
+                    margin-bottom: 15px;
+                }
+                textarea {
+                    margin-bottom: 15px;
+                }
+                p {
+                    margin: 0 10px 0 10px;
+                }
+                .input-img {
+                    margin: 0;
+                    padding: 6px 0 5px 0;
+                }
+                .img-url {
+                    font-size: 12px;
+                }
+
+            }
+            .btns-wrap {
+                display: flex;
+                width: auto;
+                margin: 0 auto;
+            }
+        }
+    }
+    .delete-item {
+        position: absolute;
+        text-align: center;
+        width: 400px;
+        left: calc(~"50vw - 200px");
+        top: calc(~"50vh - 105px");
+    }
+}
