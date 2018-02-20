@@ -35,10 +35,14 @@ async function main() {
     },
     db.models.winner = function() {
         return {
-            name: '',
             avatar: '',
+            email: '',
+            name: '',
             text: '',
-            email: ''
+            photo1: '',
+            photo2: '',
+            photo3: '',
+            date: ''
         }
     },
     db.models.review = function() {

@@ -129,7 +129,7 @@
     
 
     <!-- Modal -->
-    <div id="addModal" v-if="mainServiceRes.modalView" class="modal" role="dialog">
+    <div id="addModal" v-show="mainServiceRes.modalView" class="modal" role="dialog">
             
         <div class="modal-dialog modal-lg ">
                 <div class="modal-content">
@@ -137,25 +137,25 @@
                     <div v-for="(item, index) in mainServiceRes.fieldsForCreate">
                         <div class="item-wrap" v-if="models[item] === 'number'">
                             <p>{{ item }}</p>
-                            <input class="input-alternate" type="number" v-model="mainServiceRes.newOutput[item]" >
+                            <input class="input-alternate" type="number" v-model="newOutput[item]" >
                         </div>
                         <div class="item-wrap" v-else-if="models[item] === 'char'">
                             <p>{{ item }}</p>
-                            <input class="input-alternate" type="text" v-model="mainServiceRes.newOutput[item]" >
+                            <input class="input-alternate" type="text" v-model="newOutput[item]" >
                         </div>
                         <div class="item-wrap" v-else-if="models[item] === 'richtext'" style="font-weight: bold">
                             <p>{{ item }}</p>
-                            <input class="input-alternate" type="text" style="font-weight: bold" v-model="mainServiceRes.newOutput[item]" >
+                            <input class="input-alternate" type="text" style="font-weight: bold" v-model="newOutput[item]" >
                         </div>
                         <div class="item-wrap" v-else-if="models[item] === 'text'">
                             <p>{{ item }}</p>
-                            <textarea class="input-alternate" v-bind:name="'editor' + index"  v-model="mainServiceRes.newOutput[item]" ></textarea>
+                            <textarea class="input-alternate" v-bind:name="'editor' + index"  v-model="newOutput[item]" ></textarea>
                         </div>
                         <div class="item-wrap" v-else-if="models[item] === 'img'">
                             <p>{{ item }}</p>
                             <input class="input-img btn btn-blue-grey btn-sm my-0" accept="image/*" type = "file" v-bind:id = "'myFile' + index"/>
                             <button class="btn btn-blue-grey btn-sm my-0" type="button" v-on:click="uploadPhoto('myFile' + index, item)">Load image</button>
-                            <p class="img-url">{{mainServiceRes.newOutput[item]}}</p>
+                            <p class="img-url">{{newOutput[item]}}</p>
                         </div>
                     </div>
                     <div class="btns-wrap">

@@ -12,7 +12,10 @@ function mainPage() {
 				modelSearch: '',
 				type: '',
 				deleteWindow: false,
-				columnsMenu: false
+				columnsMenu: false,
+				newOutput : {
+
+				}
 			}
 		},
 		computed: {
@@ -32,14 +35,17 @@ function mainPage() {
 			},
 			createNew: function(){
 				this.type = 'new'
-				this.mainServiceRes.modalView = true
-				// for (let i = 0; i < this.mainServiceRes.fieldsForCreate.length; i++) {
-				// 	this.mainServiceRes.newOutput[this.mainServiceRes.fieldsForCreate[i]] = ''
+				for (let i = 0; i < this.mainServiceRes.fieldsForCreate.length; i++) {
+					this.$set(this.newOutput, this.mainServiceRes.fieldsForCreate[i], '')
 				// 	if (this.models[this.mainServiceRes.fieldsForCreate[i]] == 'text') {
 				// 		let editor = 'editor' + i
 				// 		CKEDITOR.replace( editor );
 				// 	}
-				// } 
+				} 
+				setTimeout(() => {
+					this.mainServiceRes.modalView = true
+					
+				}, 100);
 			},
 			chooseColumns: function() {
 				this.mainServiceRes.columnsName = []
@@ -116,6 +122,7 @@ function mainPage() {
 				// 		}
 				// 	}
 				// }
+				this.mainServiceRes.newOutput = this.newOutput
 				for (k in this.mainServiceRes.newOutput) {
 					if (typeof this.mainServiceRes.fieldsType[k] === 'object')  {
 						if (typeof this.mainServiceRes.newOutput[k] != 'object') {
@@ -151,6 +158,7 @@ function mainPage() {
 				// 		CKEDITOR.replace( editor );
 				// 	}
 				// } 
+				this.newOutput = this.mainServiceRes.newOutput
 				this.type = 'edit'
 				this.mainServiceRes.id = id
 				mainService.getOne()
@@ -170,6 +178,9 @@ function mainPage() {
 			},
 			cancel() {
 				this.mainServiceRes.modalView = false
+				for(i in this.newOutput) {
+					this.newOutput[i] = ''
+				}
 				for(i in this.mainServiceRes.newOutput) {
 					this.mainServiceRes.newOutput[i] = ''
 				}
@@ -184,14 +195,10 @@ function mainPage() {
 						let dataImg = {}
 						dataImg['base64'] = result
 						this.$http.post('/api/v1/upload', dataImg).then(response => {
-							this.mainServiceRes.newOutput[item] = response.body.url
+							this.$set(this.newOutput, item, response.body.url)
 						}, response => {
 							console.log('error at upload photo', response)
 						});
-						// $.post( document.location.href + 'api/v1/upload', dataImg)
-						// .done(function( data ) {
-						// 	console.log( 'AZAZAZA', data );
-						// });
 					}
 					reader.readAsDataURL(file)
 				}
