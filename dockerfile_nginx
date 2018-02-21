@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx
 
 RUN mkdir /frontend
 COPY ./nginx/nginx.conf /etc/nginx/
