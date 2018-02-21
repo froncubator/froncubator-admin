@@ -2,7 +2,7 @@ version: "3"
 services:
   web:
     environment:
-      - LOCATION_HOST=127.0.0.1:3333
+      - LOCATION_HOST=127.0.0.1:3335
       - LOCATION_MODE=local
     build:
       context: .
@@ -17,7 +17,7 @@ services:
       - './nginx/logs:/var/log/nginx'
       - './app/frontend:/frontend'
     ports:
-      - "3333:80"
-      - "3334:8088"
+      - "3335:80"
+      - "3336:8088"
     links:
       - web
