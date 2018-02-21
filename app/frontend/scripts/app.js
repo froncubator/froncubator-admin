@@ -9,7 +9,7 @@ window.onload = function() {
 		},
 		methods: {
 			initApp: function(callback) {
-				this.$http.get(window.location.origin + '/api/v1/templates/getAll').then(res => {
+				this.$http.get(window.location.origin + '/admin/api/v1/templates/getAll').then(res => {
 					this.templates = res.body.templates
 					colList = res.body.list
 					modelsView = res.body.modelsView

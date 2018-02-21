@@ -194,7 +194,7 @@ function mainPage() {
 						result = reader.result
 						let dataImg = {}
 						dataImg['base64'] = result
-						this.$http.post('/api/v1/upload', dataImg).then(response => {
+						this.$http.post('/admin/api/v1/upload', dataImg).then(response => {
 							this.$set(this.newOutput, item, response.body.url)
 						}, response => {
 							console.log('error at upload photo', response)

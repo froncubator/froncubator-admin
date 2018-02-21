@@ -35,7 +35,7 @@ app.use('/images', express.static('./images'))
 app.use('/static', express.static('./frontend'))
 
 // upload photo
-app.post('/api/v1/upload', async (req, res) => {
+app.post('/admin/api/v1/upload', async (req, res) => {
     const uploader = new Uploader()
     uploader.uploaderFolder = './images'
     uploader.host = 'http://127.0.0.1:3333'
@@ -57,7 +57,7 @@ app.post('/api/v1/upload', async (req, res) => {
 })
 
 //get all templates and collection names
-app.get('/api/v1/templates/getAll', async (req, res) => {
+app.get('/admin/api/v1/templates/getAll', async (req, res) => {
     let data = {
         templates: {},
         list: [],
@@ -83,7 +83,7 @@ app.get('/api/v1/templates/getAll', async (req, res) => {
 })
 
 //get all fields from collection
-app.post('/api/v1/collections/names', async (req, res) => {
+app.post('/admin/api/v1/collections/names', async (req, res) => {
     let collectionName = req.body.data
     if (collectionName.length > 0) {
         let arr = db.models[collectionName]()
@@ -98,7 +98,7 @@ app.post('/api/v1/collections/names', async (req, res) => {
 })
 
 //get collection
-app.post('/api/v1/collection/fields', async (req, res) => {
+app.post('/admin/api/v1/collection/fields', async (req, res) => {
     try {
         let collectionName = req.body.name
         let collectionColumns = req.body.columns
@@ -177,12 +177,12 @@ app.post('/api/v1/collection/fields', async (req, res) => {
         }
 
     } catch (err) {
-        console.log('/api/v1/collection/fields', err)
+        console.log('/admin/api/v1/collection/fields', err)
     }
 })
 
 //get collection count
-app.post('/api/v1/collection/count', async (req, res) => {
+app.post('/admin/api/v1/collection/count', async (req, res) => {
     try {
         let collectionName = Object.keys(req.body.name)
         let output = {}
@@ -200,12 +200,12 @@ app.post('/api/v1/collection/count', async (req, res) => {
         res.send(output)
 
     } catch (err) {
-        console.log('/api/v1/collection/count', err)
+        console.log('/admin/api/v1/collection/count', err)
     }
 })
 
 //get one
-app.post('/api/v1/collections/get/one', async (req, res) => {
+app.post('/admin/api/v1/collections/get/one', async (req, res) => {
     try {
         let collectionName = req.body.name
         let id = req.body.id
@@ -226,12 +226,12 @@ app.post('/api/v1/collections/get/one', async (req, res) => {
         res.send(output)
 
     } catch (err) {
-        console.log('/api/v1/collection/get/one', err)
+        console.log('/admin/api/v1/collection/get/one', err)
     }
 })
 
 //update one
-app.post('/api/v1/collections/update/one', async (req, res) => {
+app.post('/admin/api/v1/collections/update/one', async (req, res) => {
     try {
         let collectionName = req.body.name
         let update = req.body.update
@@ -246,12 +246,12 @@ app.post('/api/v1/collections/update/one', async (req, res) => {
         res.send(true)
 
     } catch (err) {
-        console.log('/api/v1/update/one', err)
+        console.log('/admin/api/v1/update/one', err)
     }
 })
 
 //delete one
-app.post('/api/v1/collections/delete/one', async (req, res) => {
+app.post('/admin/api/v1/collections/delete/one', async (req, res) => {
     try {
         let collectionName = req.body.name
         let id = req.body.id
@@ -260,12 +260,12 @@ app.post('/api/v1/collections/delete/one', async (req, res) => {
         res.send(true)
 
     } catch (err) {
-        console.log('/api/v1/update/one', err)
+        console.log('/admin/api/v1/update/one', err)
     }
 })
 
 //create new 
-app.post('/api/v1/collections/create', async (req, res) => {
+app.post('/admin/api/v1/collections/create', async (req, res) => {
     try {
         let collectionName = req.body.name
         let update = req.body.update
@@ -274,7 +274,7 @@ app.post('/api/v1/collections/create', async (req, res) => {
         res.send(true)
 
     } catch (err) {
-        console.log('/api/v1/collection/create', err)
+        console.log('/admin/api/v1/collection/create', err)
     }
 })
 
