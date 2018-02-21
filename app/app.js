@@ -38,7 +38,7 @@ app.use('/static', express.static('./frontend'))
 app.post('/admin/api/v1/upload', async (req, res) => {
     const uploader = new Uploader()
     uploader.uploaderFolder = './images'
-    uploader.host = 'http://127.0.0.1:3333'
+    uploader.host = 'http://dev.konkurs-otrivin.ru'
     let url = ''
     if (req.body.url != undefined) {
         let type = await helper.fileType(req.body.url)
