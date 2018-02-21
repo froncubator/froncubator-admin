@@ -9,6 +9,7 @@ window.onload = function() {
 		},
 		methods: {
 			initApp: function(callback) {
+				console.log('INIT', window.location.origin)
 				this.$http.get(window.location.origin + '/admin/api/v1/templates/getAll').then(res => {
 					this.templates = res.body.templates
 					colList = res.body.list
@@ -21,7 +22,8 @@ window.onload = function() {
 
 	root.initApp(function() {
 		let routeList = []
-		routeList[routeList.length] = { path:'/', component: authPage() }
+		// routeList[routeList.length] = { path:'/', component: authPage() }
+		routeList[routeList.length] = { path:'/', component: mainPage() }
 		routeList[routeList.length] = { path:'/main', component: mainPage() }
 		for (i = 0; i < colList.length; i ++) {
 			routeList[routeList.length] = { path:`/${colList[i]}`, component: mainPage() }

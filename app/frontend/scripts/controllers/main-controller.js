@@ -206,6 +206,7 @@ function mainPage() {
 			
 		},
 		created: function() {
+			console.log('LET DO IT')
 			let path = window.location.pathname
 			if (path != '/main' && path != '/') {
 				let newPath = path.replace('/', '')
