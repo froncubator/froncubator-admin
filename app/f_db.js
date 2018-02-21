@@ -9,7 +9,7 @@ let hostIP = ''
 async function main() {
     db = new FroncubatorMongo()
 
-    exec("/sbin/ip route|awk '/default/ { print $3 }'", (error, stdout, stderr) => {
+    await exec("/sbin/ip route|awk '/default/ { print $3 }'", (error, stdout, stderr) => {
         hostIP = stdout.replace(/[^0-9\.]/gi,'')
         db.connect('mongodb://' + hostIP + ':27017/otrivin', 'otrivin')
     })
