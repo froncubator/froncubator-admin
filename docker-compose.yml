@@ -16,6 +16,7 @@ services:
     volumes:
       - './nginx/logs:/var/log/nginx'
       - './app/frontend:/frontend'
+      - './app/images:/images'
     ports:
       - "3335:80"
       - "3336:8088"

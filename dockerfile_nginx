@@ -1,5 +1,6 @@
 FROM nginx
 
 RUN mkdir /frontend
+RUN mkdir /images
 COPY ./nginx/nginx.conf /etc/nginx/
 EXPOSE 80
