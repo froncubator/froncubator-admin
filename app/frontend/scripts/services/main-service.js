@@ -24,7 +24,7 @@ let mainService = new Vue({
 	},
 	methods: {
 		getCount: function() {
-			this.$http.post('/api/v1/collection/count', { name: this.res.collectionsNameCount }).then(response => {
+			this.$http.post('/admin/api/v1/collection/count', { name: this.res.collectionsNameCount }).then(response => {
 				this.res.collectionsNameCount = response.body
 				this.res.list = this.res.collectionsNameCount
 				let count = this.res.collectionsNameCount[this.res.collectionName]
@@ -35,7 +35,7 @@ let mainService = new Vue({
 			});
 		},
 		getCollection: function() {
-			this.$http.post('/api/v1/collection/fields', { name: this.res.collectionName, columns: this.res.columnsName, skip: this.res.skip, match: this.res.match, coincidence: this.res.coincidence, searchIn: this.res.searchIn, searchString: this.res.searchString }).then(response => {
+			this.$http.post('/admin/api/v1/collection/fields', { name: this.res.collectionName, columns: this.res.columnsName, skip: this.res.skip, match: this.res.match, coincidence: this.res.coincidence, searchIn: this.res.searchIn, searchString: this.res.searchString }).then(response => {
 				this.res.fields = response.body.output
 				let count = response.body.count
 				if (count != undefined)
@@ -45,7 +45,7 @@ let mainService = new Vue({
 			});
 		},
 		getFields: function() {
-			this.$http.post('/api/v1/collections/names', { data: this.res.collectionName }).then(response => {
+			this.$http.post('/admin/api/v1/collections/names', { data: this.res.collectionName }).then(response => {
 				this.res.fieldsName = response.body
 				let resp = response.body
 				for (let i = 0; i < resp.length; i ++) {
@@ -78,7 +78,7 @@ let mainService = new Vue({
 			});
 		},
 		getOne: function() {
-			this.$http.post('/api/v1/collections/get/one', { name: this.res.collectionName, id: this.res.id }).then(response => {
+			this.$http.post('/admin/api/v1/collections/get/one', { name: this.res.collectionName, id: this.res.id }).then(response => {
 				let resp = response.body[0]
 				this.res.fieldsType = response.body[0]
 				for (k in this.res.newOutput) {
@@ -96,7 +96,7 @@ let mainService = new Vue({
 			});
 		},
 		editOne: function() {
-			this.$http.post('/api/v1/collections/update/one', { name: this.res.collectionName, id: this.res.id, update: this.res.newOutput }).then(response => {
+			this.$http.post('/admin/api/v1/collections/update/one', { name: this.res.collectionName, id: this.res.id, update: this.res.newOutput }).then(response => {
 				let resp = response.body
 				if (resp === true) {
 					this.res.modalView = false
@@ -106,7 +106,7 @@ let mainService = new Vue({
 			});
 		},
 		createNew: function() {
-			this.$http.post('/api/v1/collections/create', { name: this.res.collectionName, update: this.res.newOutput }).then(response => {
+			this.$http.post('/admin/api/v1/collections/create', { name: this.res.collectionName, update: this.res.newOutput }).then(response => {
 				let resp = response.body
 				if (resp === true) {
 					this.res.modalView = false
@@ -116,7 +116,7 @@ let mainService = new Vue({
 			});
 		},
 		delete: function() {
-			this.$http.post('/api/v1/collections/delete/one', { name: this.res.collectionName, id: this.res.id }).then(response => {
+			this.$http.post('/admin/api/v1/collections/delete/one', { name: this.res.collectionName, id: this.res.id }).then(response => {
 				let resp = response.body
 			}, response => {
 				  console.log('error at createNew()', response)
