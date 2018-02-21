@@ -21,12 +21,3 @@ services:
       - "3336:8088"
     links:
       - web
-  mongo:
-    image: mongo:3.2.10
-    volumes:
-      - './data:/data/db'
-      - './mongodb/logs:/var/log/mongodb'
-    ports:
-      - "27017:27017"
-    expose:
-      - "27017"

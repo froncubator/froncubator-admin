@@ -1,12 +1,19 @@
 
 const FroncubatorMongo = require('froncubator-mongo')
+const exec = require('child_process').exec
 
 let db = ''
+
+let hostIP = ''
 
 async function main() {
     db = new FroncubatorMongo()
 
-    await db.connect('mongodb://mongo:27017/otrivin', 'otrivin')
+    exec("/sbin/ip route|awk '/default/ { print $3 }'", (error, stdout, stderr) => {
+        hostIP = stdout.replace(/[^0-9\.]/gi,'')
+        db.connect('mongodb://' + hostIP + ':27017/otrivin', 'otrivin')
+    })
+    // await db.connect('mongodb://' + hostIP + ':27017/otrivin', 'otrivin')
  
    
     db.modelsView = {
