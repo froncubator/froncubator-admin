@@ -18,7 +18,7 @@ gulp.task('desktop_js', function() {
 });
 
 gulp.task('desktop_font', function() {
-    gulp.src(['./font/**.*'])
+    gulp.src(['./font/**'])
     .pipe(gulp.dest('./build/font'))
 })
 
