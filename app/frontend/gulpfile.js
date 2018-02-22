@@ -42,7 +42,7 @@ gulp.task("desktop", function() {
     gulp.start('desktop_js')
     gulp.start('desktop_less')
     gulp.start('desktop_images')
-    gulp.start('desktop_fonts')
+    gulp.start('desktop_font')
 })
 
 gulp.task('star_watch', function() {
