@@ -17,9 +17,9 @@ gulp.task('desktop_js', function() {
     .pipe(gulp.dest('./build/scripts'))
 });
 
-gulp.task('desktop_fonts', function() {
-    gulp.src(['./fonts/*'])
-    .pipe(gulp.dest('./build/fonts'))
+gulp.task('desktop_font', function() {
+    gulp.src(['./font/*'])
+    .pipe(gulp.dest('./build/font'))
 })
 
 gulp.task('desktop_less', function() {
