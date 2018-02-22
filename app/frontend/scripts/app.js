@@ -9,7 +9,6 @@ window.onload = function() {
 		},
 		methods: {
 			initApp: function(callback) {
-				console.log('INIT', window.location.origin)
 				this.$http.get(window.location.origin + '/admin/api/v1/templates/getAll').then(res => {
 					this.templates = res.body.templates
 					colList = res.body.list

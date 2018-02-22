@@ -206,9 +206,7 @@ function mainPage() {
 			
 		},
 		created: function() {
-			console.log('LET DO IT')
 			let path = window.location.pathname
-			console.log(path)
 			if (path != '/admin/main' && path != '/admin/') {
 				let newPath = path.replace('/admin/', '')
 				this.mainServiceRes.collectionName = newPath
