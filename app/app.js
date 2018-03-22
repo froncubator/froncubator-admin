@@ -121,8 +121,8 @@ app.post('/admin/api/v1/collection/fields', async (req, res) => {
                 { }, 
                 {  
                     fields: fields,
-                    limit: 100,
-                    skip: skip
+                    // limit: 100,
+                    // skip: skip
                 }, {
                     // count: true 
                 }
@@ -132,7 +132,7 @@ app.post('/admin/api/v1/collection/fields', async (req, res) => {
                 {  
                     fields: fields,
                     // limit: 100,
-                    skip: skip
+                    // skip: skip
                 }, {
                     count: true 
                 }
@@ -157,8 +157,8 @@ app.post('/admin/api/v1/collection/fields', async (req, res) => {
             let output = await db.find(collectionName, search, 
                 {  
                     fields: fields,
-                    limit: 100,
-                    skip: skip
+                    // limit: 100,
+                    // skip: skip
                 }, {
                     // count: true 
                 }
@@ -167,7 +167,7 @@ app.post('/admin/api/v1/collection/fields', async (req, res) => {
                 {  
                     fields: fields,
                     // limit: 100,
-                    skip: skip
+                    // skip: skip
                 }, {
                     count: true 
                 }
