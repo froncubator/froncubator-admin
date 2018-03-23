@@ -22,7 +22,7 @@ window.onload = function() {
 	root.initApp(function() {
 		let routeList = []
 		// routeList[routeList.length] = { path:'/', component: authPage() }
-		routeList[routeList.length] = { path:'/admin/', component: mainPage() }
+		routeList[routeList.length] = { path:'/admin', component: mainPage() }
 		routeList[routeList.length] = { path:'/admin/main', component: mainPage() }
 		for (i = 0; i < colList.length; i ++) {
 			routeList[routeList.length] = { path:`/admin/${colList[i]}`, component: mainPage() }

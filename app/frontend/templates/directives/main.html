@@ -17,7 +17,7 @@
         <div class="col-3 stylish-color-dark left-menu">
             <ul class="list-group stylish-color-dark" v-for="(key, value) in mainServiceRes.collectionsNameCount">
                 <li class="list-group-item d-flex justify-content-between align-items-center stylish-color-dark white-text">
-                    <a v-bind:href="value" class="white-text">{{ value }}</a> 
+                    <a href="/admin/{{ value }}" class="white-text">{{ value }}</a>
                     <span class="badge badge-blue-grey badge-pill">{{ key }}</span>
                 </li>
             </ul>
@@ -29,7 +29,7 @@
                 <div class="col">
                     <h4>{{ mainServiceRes.collectionName }}</h4>
                 </div>
-            </div>  
+            </div>
             <div class="row search-menu">
                 <div class="col-4 col-search">
                     <input placeholder="Search" type="text" class="input-alternate" v-model="mainServiceRes.searchString">
@@ -42,8 +42,8 @@
                         <button class="btn btn-blue-grey btn-sm my-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" type="button">{{ mainServiceRes.searchIn }}</button>
                         <div class="dropdown-menu menu-dementions">
                             <div class="form-group match-radio"  v-for="(name, index) in mainServiceRes.fieldsName">
-                                <input name="searchGroup" v-bind:value="name" type="radio" v-bind:id="'radioSearch' + index" v-model="mainServiceRes.searchIn"> 
-                                <label v-bind:for="'radioSearch' + index">{{ name }}</label> 
+                                <input name="searchGroup" v-bind:value="name" type="radio" v-bind:id="'radioSearch' + index" v-model="mainServiceRes.searchIn">
+                                <label v-bind:for="'radioSearch' + index">{{ name }}</label>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                     </div>
                     <button class="btn btn-blue-grey btn-sm my-0 " type="button" v-on:click="createNew()" >Create</button>
                 </div>
-            </div> 
+            </div>
             <div class="row pagination-row">
                 <div class="col-4">
                     <button class="btn btn-blue-grey btn-sm my-0 previous-btn" type="button" v-on:click="prevPage()">&laquo;</button>
@@ -126,11 +126,11 @@
 
     </div>
 
-    
+
 
     <!-- Modal -->
     <div id="addModal" v-show="mainServiceRes.modalView" class="modal" role="dialog">
-            
+
         <div class="modal-dialog modal-lg ">
                 <div class="modal-content">
                     <h3 class="collection-name blue-grey lighten-1 white-text">{{ mainServiceRes.collectionName }}</h3>
